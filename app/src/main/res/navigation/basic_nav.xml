@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/basic_nav"
+    app:startDestination="@id/title3">
+    <fragment
+        android:id="@+id/title3"
+        android:name="jp.ac.it_college.std.s21012.androidtask.Title"
+        android:label="fragment_title"
+        tools:layout="@layout/fragment_title" >
+        <action
+            android:id="@+id/action_title3_to_byGeneration2"
+            app:destination="@id/byGeneration2" />
+    </fragment>
+    <fragment
+        android:id="@+id/byGeneration2"
+        android:name="jp.ac.it_college.std.s21012.androidtask.ByGeneration"
+        android:label="fragment_by_generation"
+        tools:layout="@layout/fragment_by_generation" >
+        <action
+            android:id="@+id/action_byGeneration2_to_quiz2"
+            app:destination="@id/quiz2" />
+    </fragment>
+    <fragment
+        android:id="@+id/quiz2"
+        android:name="jp.ac.it_college.std.s21012.androidtask.Quiz"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" >
+        <action
+            android:id="@+id/action_quiz2_to_result2"
+            app:destination="@id/result2" />
+    </fragment>
+    <fragment
+        android:id="@+id/result2"
+        android:name="jp.ac.it_college.std.s21012.androidtask.Result"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_result2_to_byGeneration2"
+            app:destination="@id/byGeneration2" />
+    </fragment>
+</navigation>
