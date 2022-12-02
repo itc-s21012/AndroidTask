@@ -24,7 +24,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import kotlin.collections.EmptySet.forEach
 
 class QuizFragment : Fragment() {
     private var _binding: FragmentQuizBinding? = null
