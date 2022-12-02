@@ -1,5 +1,6 @@
 package jp.ac.it_college.std.s21012.androidtask
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +31,7 @@ class QuizFragment : Fragment() {
     private val binding get() = _binding!!
     private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     private val args: QuizFragmentArgs by navArgs()
+    private val BASE_URL = "https://pokeapi.co/api/v2/"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,20 +39,30 @@ class QuizFragment : Fragment() {
     ): View? {
         _binding = FragmentQuizBinding.inflate(inflater, container, false)
         binding.gen.text = getString(R.string.gen_select, args.num)
+        fun gens() {
+            pokedex.forEach { g ->
+                g.entries.map { e -> e.pokemon_id }.toIntArray()
+
+                args.num
+            }
+        }
+
         return binding.root
 
     }
 
+
+
     @UiThread
-    private fun showpokeimg(id: Int) {
+    private fun showPokeImg(id: Int) {
         lifecycleScope.launch {
-            val info = getPokemonInfo(id)
+            val info = getPokemonImg(id)
             setPokemonInfo(info)
         }
     }
 
     @WorkerThread
-    private suspend fun getPokemonInfo(id: Int): PokemonInfo {
+    private suspend fun getPokemonImg(id: Int): PokemonImgInfo {
         return withContext(Dispatchers.IO) {
             val retrofit = Retrofit.Builder().apply {
                 baseUrl(BASE_URL)
@@ -67,9 +79,11 @@ class QuizFragment : Fragment() {
         }
     }
 
+
     @UiThread
-    private fun setPokemonInfo(info: PokemonInfo) {
+    private fun setPokemonInfo(info: PokemonImgInfo) {
         val IMG_URL = info.sprites.other.officialArtwork.frontDefault
         Picasso.get().load(IMG_URL).into(binding.viPokemon)
+        binding.viPokemon.setColorFilter(Color.rgb(0, 0, 0))
     }
 }

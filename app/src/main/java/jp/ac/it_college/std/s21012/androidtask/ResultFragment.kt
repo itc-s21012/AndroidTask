@@ -25,11 +25,11 @@ class ResultFragment : Fragment() {
 
     ): View {
 
-        _binding = FragmentResultBinding.inflate(inflater, container, false)
+        _binding = FragmentResultBinding().inflate(inflater, container, false)
 
         binding.button.setOnClickListener {
             Navigation.findNavController(it).navigate(
-                ResultDisplayFragmentDirections.actionResultDisplayFragmentToQuizSelectDisplayFragment()
+                ResultFragmentDirections.action
             )
         }
         val score = args.score
