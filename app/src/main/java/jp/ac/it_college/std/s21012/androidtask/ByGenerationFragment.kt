@@ -5,55 +5,83 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import jp.ac.it_college.std.s21012.androidtask.databinding.FragmentByGenerationBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ByGenerationFragment : Fragment() {
+    private var _binding: FragmentByGenerationBinding? = null
+    private val binding get() = _binding!!
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ByGeneration.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ByGeneration : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_by_generation, container, false)
+        _binding = FragmentByGenerationBinding.inflate(inflater, container, false)
+        binding.gen1.setOnClickListener {
+            Navigation.findNavController(it).navigate(
+                ByGenerationFragmentDirections.actionByGeneration2ToQuiz2().apply {
+                    num = 1
+                }
+            )
+        }
+        binding.gen2.setOnClickListener {
+            Navigation.findNavController(it).navigate(
+                ByGenerationFragmentDirections.actionByGeneration2ToQuiz2().apply {
+                    num = 2
+                }
+            )
+        }
+        binding.gen3.setOnClickListener {
+            Navigation.findNavController(it).navigate(
+                ByGenerationFragmentDirections.actionByGeneration2ToQuiz2().apply {
+                    num = 3
+                }
+            )
+        }
+        binding.gen4.setOnClickListener {
+            Navigation.findNavController(it).navigate(
+                ByGenerationFragmentDirections.actionByGeneration2ToQuiz2().apply {
+                    num = 4
+                }
+            )
+        }
+        binding.gen5.setOnClickListener {
+            Navigation.findNavController(it).navigate(
+                ByGenerationFragmentDirections.actionByGeneration2ToQuiz2().apply {
+                    num = 5
+                }
+            )
+        }
+        binding.gen6.setOnClickListener {
+            Navigation.findNavController(it).navigate(
+                ByGenerationFragmentDirections.actionByGeneration2ToQuiz2().apply {
+                    num = 6
+                }
+            )
+        }
+        binding.gen7.setOnClickListener {
+            Navigation.findNavController(it).navigate(
+                ByGenerationFragmentDirections.actionByGeneration2ToQuiz2().apply {
+                    num = 7
+                }
+            )
+        }
+        binding.gen8.setOnClickListener {
+            Navigation.findNavController(it).navigate(
+                ByGenerationFragmentDirections.actionByGeneration2ToQuiz2().apply {
+                    num = 8
+                }
+            )
+        }
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ByGeneration.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ByGeneration().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

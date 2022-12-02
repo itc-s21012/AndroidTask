@@ -20,7 +20,7 @@ class TitleFragment : Fragment() {
         //STARTボタンタップで世代選択画面に遷移
         binding.btStart.setOnClickListener {
             Navigation.findNavController(it).navigate(
-                TitleFragmentDirections.actionTitleFragmentToGenSelectFragment().apply {
+                TitleFragmentDirections.actionTitle3ToByGeneration2().apply {
 
                 }
             )
@@ -32,5 +32,4 @@ class TitleFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
 }
