@@ -70,7 +70,7 @@ class QuizFragment : Fragment() {
 
             val service: PokemonService = retrofit.create(PokemonService::class.java)
             try {
-                service.(id).execute().body()
+                service.getPokemon(id).execute().body()
                     ?: throw IllegalStateException("ポケモンの情報が取れません")
             } catch (e: Exception) {
                 throw IllegalStateException("なにか例外が発生しました。", e)
