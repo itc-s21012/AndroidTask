@@ -15,6 +15,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.squareup.picasso.Picasso
 import jp.ac.it_college.std.s21012.androidtask.databinding.FragmentQuizBinding
 import jp.ac.it_college.std.s21012.androidtask.json.Pokedex
+import jp.ac.it_college.std.s21012.androidtask.json.PokedexJson
 import jp.ac.it_college.std.s21012.androidtask.json.Pokemon
 import jp.ac.it_college.std.s21012.androidtask.json.PokemonGazou
 import jp.ac.it_college.std.s21012.androidtask.service.PokemonService
@@ -61,7 +62,7 @@ class QuizFragment : Fragment() {
     }
 
     @WorkerThread
-    private suspend fun getPokemonImg(id: Int): Pokemon {
+    private suspend fun getPokemonImg(id: Int): PokemonGazou {
         return withContext(Dispatchers.IO) {
             val retrofit = Retrofit.Builder().apply {
                 baseUrl(BASE_URL)
