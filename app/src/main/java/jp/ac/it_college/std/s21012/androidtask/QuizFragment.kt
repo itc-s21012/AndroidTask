@@ -10,23 +10,20 @@ import androidx.annotation.UiThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.squareup.picasso.Picasso
 import jp.ac.it_college.std.s21012.androidtask.databinding.FragmentQuizBinding
+import jp.ac.it_college.std.s21012.androidtask.json.Pokedex
 import jp.ac.it_college.std.s21012.androidtask.json.Pokemon
 import jp.ac.it_college.std.s21012.androidtask.json.PokemonGazou
-import jp.ac.it_college.std.s21012.androidtask.service.Poke
 import jp.ac.it_college.std.s21012.androidtask.service.PokemonService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-
-private const val BASE_URL = "https://pokeapi.co/api/v2/"
+import kotlin.collections.EmptySet.forEach
 
 class QuizFragment : Fragment() {
     private var _binding: FragmentQuizBinding? = null
@@ -42,7 +39,7 @@ class QuizFragment : Fragment() {
         _binding = FragmentQuizBinding.inflate(inflater, container, false)
         binding.gen.text = getString(R.string.gen_select, args.num)
         fun gens() {
-            pokedex.forEach { g ->
+            PokemonGazou.forEach { g ->
                 g.entries.map { e -> e.pokemon_id }.toIntArray()
 
                 args.num
