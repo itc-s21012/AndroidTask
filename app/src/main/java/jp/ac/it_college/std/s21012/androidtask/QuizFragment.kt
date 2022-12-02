@@ -16,6 +16,8 @@ import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.squareup.picasso.Picasso
 import jp.ac.it_college.std.s21012.androidtask.databinding.FragmentQuizBinding
+import jp.ac.it_college.std.s21012.androidtask.json.Pokemon
+import jp.ac.it_college.std.s21012.androidtask.json.PokemonGazou
 import jp.ac.it_college.std.s21012.androidtask.service.Poke
 import jp.ac.it_college.std.s21012.androidtask.service.PokemonService
 import kotlinx.coroutines.Dispatchers
@@ -62,7 +64,7 @@ class QuizFragment : Fragment() {
     }
 
     @WorkerThread
-    private suspend fun getPokemonImg(id: Int): PokemonImgInfo {
+    private suspend fun getPokemonImg(id: Int): Pokemon {
         return withContext(Dispatchers.IO) {
             val retrofit = Retrofit.Builder().apply {
                 baseUrl(BASE_URL)
@@ -71,7 +73,7 @@ class QuizFragment : Fragment() {
 
             val service: PokemonService = retrofit.create(PokemonService::class.java)
             try {
-                service.getPokemon(id).execute().body()
+                service.(id).execute().body()
                     ?: throw IllegalStateException("ポケモンの情報が取れません")
             } catch (e: Exception) {
                 throw IllegalStateException("なにか例外が発生しました。", e)
@@ -81,7 +83,7 @@ class QuizFragment : Fragment() {
 
 
     @UiThread
-    private fun setPokemonInfo(info: PokemonImgInfo) {
+    private fun setPokemonInfo(info: PokemonGazou) {
         val IMG_URL = info.sprites.other.officialArtwork.frontDefault
         Picasso.get().load(IMG_URL).into(binding.viPokemon)
         binding.viPokemon.setColorFilter(Color.rgb(0, 0, 0))
